@@ -183,7 +183,7 @@ export default function App() {
         </section>
 
         <footer className="mt-12 text-center text-sm text-white/60">
-          Built with React + Tailwind • Data from OpenWeatherMap
+          By - <a href="https://github.com/Afraim/WeatherApp" >Md. Afraim Bin Zahangir</a> | 2025
         </footer>
       </main>
     </div>
