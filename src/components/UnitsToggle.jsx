@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Check } from "lucide-react";
 
 export default function UnitsToggle({ units, onChange }) {
   const [open, setOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function UnitsToggle({ units, onChange }) {
         onClick={() => setOpen(!open)}
         className="px-3 py-1 bg-white/10 rounded flex items-center gap-2"
       >
+        <i className="fa-solid fa-gear"></i>
         Units ▾
       </button>
 
@@ -27,15 +29,79 @@ export default function UnitsToggle({ units, onChange }) {
             {units === "metric" ? "Switch to Imperial" : "Switch to Metric"}
           </button>
 
-          <div className="mt-2 text-sm text-gray-200">
-            <div className="mb-1">Temperature</div>
-            <div className="ml-3">{units === "metric" ? "Celsius (°C)" : "Fahrenheit (°F)"}</div>
+          {/* Temperature */}
+          <div className="mb-2">
+            <div className="text-sm text-gray-300 mb-1">Temperature</div>
+            <div className="space-y-1">
+              <button
+                onClick={() => toggleUnit("metric")}
+                className={`flex items-center justify-between w-full text-left px-3 py-2 rounded transition ${
+                  units === "metric" ? "bg-white/20" : "hover:bg-white/10"
+                }`}
+              >
+                <span>Celsius (°C)</span>
+                {units === "metric" && <Check className="w-4 h-4 text-white" />}
+              </button>
+              <button
+                onClick={() => toggleUnit("imperial")}
+                className={`flex items-center justify-between w-full text-left px-3 py-2 rounded transition ${
+                  units === "imperial" ? "bg-white/20" : "hover:bg-white/10"
+                }`}
+              >
+                <span>Fahrenheit (°F)</span>
+                {units === "imperial" && <Check className="w-4 h-4 text-white" />}
+              </button>
+            </div>
+          </div>
 
-            <div className="mt-2 mb-1">Wind Speed</div>
-            <div className="ml-3">{units === "metric" ? "km/h" : "mph"}</div>
+          {/* Wind Speed */}
+          <div className="mb-2">
+            <div className="text-sm text-gray-300 mb-1">Wind Speed</div>
+            <div className="space-y-1">
+              <button
+                onClick={() => toggleUnit("metric")}
+                className={`flex items-center justify-between w-full text-left px-3 py-2 rounded transition ${
+                  units === "metric" ? "bg-white/20" : "hover:bg-white/10"
+                }`}
+              >
+                <span>km/h</span>
+                {units === "metric" && <Check className="w-4 h-4 text-white" />}
+              </button>
+              <button
+                onClick={() => toggleUnit("imperial")}
+                className={`flex items-center justify-between w-full text-left px-3 py-2 rounded transition ${
+                  units === "imperial" ? "bg-white/20" : "hover:bg-white/10"
+                }`}
+              >
+                <span>mph</span>
+                {units === "imperial" && <Check className="w-4 h-4 text-white" />}
+              </button>
+            </div>
+          </div>
 
-            <div className="mt-2 mb-1">Precipitation</div>
-            <div className="ml-3">{units === "metric" ? "Millimeters (mm)" : "Inches (in)"}</div>
+          {/* Precipitation */}
+          <div>
+            <div className="text-sm text-gray-300 mb-1">Precipitation</div>
+            <div className="space-y-1">
+              <button
+                onClick={() => toggleUnit("metric")}
+                className={`flex items-center justify-between w-full text-left px-3 py-2 rounded transition ${
+                  units === "metric" ? "bg-white/20" : "hover:bg-white/10"
+                }`}
+              >
+                <span>Millimeters (mm)</span>
+                {units === "metric" && <Check className="w-4 h-4 text-white" />}
+              </button>
+              <button
+                onClick={() => toggleUnit("imperial")}
+                className={`flex items-center justify-between w-full text-left px-3 py-2 rounded transition ${
+                  units === "imperial" ? "bg-white/20" : "hover:bg-white/10"
+                }`}
+              >
+                <span>Inches (in)</span>
+                {units === "imperial" && <Check className="w-4 h-4 text-white" />}
+              </button>
+            </div>
           </div>
         </div>
       )}

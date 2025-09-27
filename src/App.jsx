@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import UnitsToggle from "./components/UnitsToggle";
 import CurrentWeather from "./components/CurrentWeather";
@@ -69,7 +69,7 @@ export default function App() {
         current: {
           ...current.main,
           weather: current.weather,
-          wind: current.wind,
+          wind: current.wind?.speed,
           clouds: current.clouds.all,
           visibility: current.visibility,
           sunrise: current.sys.sunrise,
@@ -86,6 +86,11 @@ export default function App() {
 
       setData(payload);
       setLastQuery(query);
+
+      // Log wind safely immediately
+      // console.log("payload.current.wind:", payload.current.wind);
+      // console.log("typeof wind:", typeof payload.current.wind, payload.current.wind);
+
     } catch (err) {
       console.error(err);
       setError(err.message || "Failed to fetch weather");
@@ -93,6 +98,13 @@ export default function App() {
       setLoading(false);
     }
   }
+
+  // Log wind whenever data updates
+  useEffect(() => {
+    if (data) {
+      console.log("data.current.wind after setData:", data.current.wind);
+    }
+  }, [data]);
 
   // When switching units, refetch with lastQuery
   function handleUnitsChange(newUnits) {
@@ -174,16 +186,14 @@ export default function App() {
                 <div className="p-4 bg-gray-500/20 rounded-2xl text-center">
                   <div className="text-xs text-white/70">Wind</div>
                   <div className="text-lg font-semibold">
-                    {Math.round(data.current.wind?.speed)}{" "}
+                    {Math.round(data?.current?.wind ?? 0)}{" "}
                     {units === "metric" ? "m/s" : "mph"}
                   </div>
                 </div>
                 <div className="p-4 bg-gray-500/20 rounded-2xl text-center">
                   <div className="text-xs text-white/70">Precipitation</div>
                   <div className="text-lg font-semibold">
-                    {data.hourly?.[0]?.pop
-                      ? `${Math.round(data.hourly[0].pop * 100)}%`
-                      : "—"}
+                    {data.rain?.["1h"] ? `${data.rain["1h"]} mm` : "0 mm"}
                   </div>
                 </div>
               </div>

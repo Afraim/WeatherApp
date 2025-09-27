@@ -1,7 +1,8 @@
 export function formatDateFromUnix(ts, timezoneOffsetSeconds = 0) {
   // ts is seconds
   const d = new Date((ts + timezoneOffsetSeconds) * 1000);
-  const opts = { weekday: "long", month: "short", day: "numeric" };
+  const opts = { weekday: "long", month: "short", day: "numeric", year: "numeric" };
+  console.log("ts",ts)
   return d.toLocaleDateString(undefined, opts);
 }
 
