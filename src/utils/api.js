@@ -12,14 +12,13 @@ async function fetchJSON(url) {
   return res.json();
 }
 
-export async function getWeatherByCity(city) {
-  // current weather (includes coordinates)
-  const url = `${BASE}/weather?q=${encodeURIComponent(city)}&appid=${KEY}&units=metric`;
+export async function getWeatherByCity(city, units = "metric") {
+  const url = `${BASE}/weather?q=${encodeURIComponent(city)}&appid=${KEY}&units=${units}`;
   return fetchJSON(url);
 }
 
-export async function getForecastByCity(city) {
-  const url = `${BASE}/forecast?q=${encodeURIComponent(city)}&appid=${KEY}&units=metric`;
+export async function getForecastByCity(city, units = "metric") {
+  const url = `${BASE}/forecast?q=${encodeURIComponent(city)}&appid=${KEY}&units=${units}`;
   return fetchJSON(url);
 }
 
@@ -28,9 +27,8 @@ export async function getGeoDirect(query, limit = 5) {
   return fetchJSON(url);
 }
 
-export async function getOneCall(lat, lon) {
-  // exclude minutely & alerts to reduce size
-  const url = `${BASE}/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=metric&appid=${KEY}`;
+export async function getOneCall(lat, lon, units = "metric") {
+  const url = `${BASE}/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=${units}&appid=${KEY}`;
   return fetchJSON(url);
 }
 
