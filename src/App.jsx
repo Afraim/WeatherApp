@@ -186,7 +186,7 @@ export default function App() {
                 <div className="p-4 bg-gray-500/20 rounded-2xl text-center">
                   <div className="text-xs text-white/70">Wind</div>
                   <div className="text-lg font-semibold">
-                    {Math.round(data?.current?.wind ?? 0)}{" "}
+                    {current.wind ?? 0}{" "}
                     {units === "metric" ? "m/s" : "mph"}
                   </div>
                 </div>
