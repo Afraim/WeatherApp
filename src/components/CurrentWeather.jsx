@@ -44,7 +44,7 @@ export default function CurrentWeather({ data, units }) {
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="p-3 bg-white/4 rounded-md">
           <div className="text-xs text-white/70">Feels like</div>
           <div className="font-medium">{feels}°</div>
@@ -61,7 +61,7 @@ export default function CurrentWeather({ data, units }) {
           <div className="text-xs text-white/70">Pressure</div>
           <div className="font-medium">{current.pressure} hPa</div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

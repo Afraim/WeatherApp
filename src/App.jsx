@@ -64,7 +64,10 @@ export default function App() {
           weather: dayItems[0].weather,
         });
       }
-
+      const precipitation =
+        (current.rain && current.rain["1h"]) ||
+        (current.snow && current.snow["1h"]) ||
+        0;
       const payload = {
         current: {
           ...current.main,
@@ -74,6 +77,7 @@ export default function App() {
           visibility: current.visibility,
           sunrise: current.sys.sunrise,
           sunset: current.sys.sunset,
+          precipitation,
         },
         hourly,
         daily,
@@ -186,14 +190,14 @@ export default function App() {
                 <div className="p-4 bg-gray-500/20 rounded-2xl text-center">
                   <div className="text-xs text-white/70">Wind</div>
                   <div className="text-lg font-semibold">
-                    {Math.round(data?.current?.wind ?? 0)}{" "}
+                    {data.current.wind ?? 0}{" "}
                     {units === "metric" ? "m/s" : "mph"}
                   </div>
                 </div>
                 <div className="p-4 bg-gray-500/20 rounded-2xl text-center">
                   <div className="text-xs text-white/70">Precipitation</div>
                   <div className="text-lg font-semibold">
-                    {data.rain?.["1h"] ? `${data.rain["1h"]} mm` : "0 mm"}
+                    {data?.current?.precipitation ? `${data.current.precipitation} mm` : "0 mm"}
                   </div>
                 </div>
               </div>

@@ -21,7 +21,7 @@ export default function UnitsToggle({ units, onChange }) {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-white/10 rounded-lg shadow-lg p-2 z-10">
+        <div className="absolute right-0 mt-2 w-48 bg-black/90 rounded-lg shadow-lg p-2 z-10">
           <button
             onClick={toggleSystem}
             className="block w-full text-left px-3 py-2 rounded hover:bg-white/20"
